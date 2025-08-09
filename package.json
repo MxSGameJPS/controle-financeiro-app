@@ -1,0 +1,77 @@
+{
+  "name": "controle-financeiro-app",
+  "version": "1.0.0",
+  "description": "Aplicativo de controle financeiro pessoal para desktop",
+  "main": "main.js",
+  "homepage": "./",
+  "scripts": {
+    "start": "electron .",
+    "build:css": "tailwindcss -i ./src/input.css -o ./src/output.css",
+    "build:css:watch": "tailwindcss -i ./src/input.css -o ./src/output.css --watch",
+    "build": "npm run build:css && electron-builder",
+    "build:win": "npm run build:css && electron-builder --win",
+    "build:mac": "npm run build:css && electron-builder --mac",
+    "build:linux": "npm run build:css && electron-builder --linux",
+    "dist": "npm run build:css && electron-builder --publish=never",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "electron",
+    "react",
+    "tailwindcss",
+    "finance",
+    "personal-finance",
+    "desktop-app"
+  ],
+  "author": "Desenvolvedor",
+  "license": "MIT",
+  "dependencies": {
+    "lucide-react": "^0.539.0",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.11",
+    "@vitejs/plugin-react": "^5.0.0",
+    "autoprefixer": "^10.4.21",
+    "electron": "^37.2.6",
+    "electron-builder": "^25.1.8",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^3.3.3",
+    "vite": "^7.1.1"
+  },
+  "build": {
+    "appId": "com.example.controle-financeiro",
+    "productName": "Controle Financeiro Pessoal",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "index.html",
+      "assets/**/*",
+      "src/**/*",
+      "node_modules/**/*",
+      "dist/**/*"
+    ],
+    "win": {
+      "target": "nsis",
+      "icon": "assets/icon.ico"
+    },
+    "mac": {
+      "target": "dmg",
+      "icon": "assets/icon.icns"
+    },
+    "linux": {
+      "target": "AppImage",
+      "icon": "assets/icon.png"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    }
+  }
+}
